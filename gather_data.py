@@ -95,7 +95,7 @@ annotate = False
 
 # Variables for photo capturing
 capture_counter = 0
-photo_folder = "photos"  # Custom folder name
+photo_folder = "3"  # Custom folder name
 
 # Create the folder if it doesn't exist
 if not os.path.exists(photo_folder):
@@ -144,7 +144,7 @@ while True:
             cv2.rectangle(face_img, start_point, end_point, (0, 255, 0), 2)
 
             # Save the annotated image in the photos folder
-            photo_name = f"{photo_folder}/annotated_face_{capture_counter}.jpg"
+            photo_name = f"dataset/three/annotated_face_{capture_counter}.jpg"
             cv2.imwrite(photo_name, face_img)
             print(f"Saved photo: {photo_name}")
 

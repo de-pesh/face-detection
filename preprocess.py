@@ -1,4 +1,5 @@
 import os
+import sys
 import cv2
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -28,23 +29,34 @@ def preprocess_images(data_dir, image_size=(128, 128)):
             labels.append(label)
 
     # Convert the lists to NumPy arrays
+                # for image in images:
+                #     cv2.imshow("hehe", image)
+                #     cv2.waitKey(0)
+                # input()
+                # cv2.destroyAllWindows()
     images = np.array(images)
     labels = np.array(labels)
 
     return images, labels
 
 # Define the path to the dataset folder
-data_directory = "/Users/deepesh/Desktop/INTERN/face detection/"
+def get_train_test():
+    data_directory = "/Users/deepesh/Desktop/Desktop/INTERN/face detection/dataset"
 
-# Preprocess the images and get the features (images) and labels
-images, labels = preprocess_images(data_directory)
+    # Preprocess the images and get the features (images) and labels
+    images, labels = preprocess_images(data_directory)
 
-print(labels)
-print("done")
+    print(labels)
+    print("done")
 
-# Split the dataset into training and testing sets
-# X_train, X_test, y_train, y_test = train_test_split(images, labels, test_size=0.2, random_state=42)
+    # Split the dataset into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(images, labels, test_size=0.3, random_state=42)
 
-# # Optionally, you can normalize the pixel values to a range between 0 and 1
-# X_train = X_train.astype("float32") / 255.0
-# X_test = X_test.astype("float32") / 255.0
+    # Optionally, you can normalize the pixel values to a range between 0 and 1
+    X_train = X_train.astype("float32") / 255.0
+    X_test = X_test.astype("float32") / 255.0
+    
+    print(y_test, y_train)
+    print(X_test, X_train)
+    return X_train, X_test, y_train, y_test
+# get_train_test()
